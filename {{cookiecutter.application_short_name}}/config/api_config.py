@@ -67,15 +67,16 @@ MONGO_LOG_COLLECTION = "task_log"
 MONGO_TOMBSTONE_COLLECTION = "tombstone"
 
 BROKER_URL = 'amqp://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_rabbitmq:{{cookiecutter.broker_port}}/{{cookiecutter.broker_vhost}}'
-BROKER_USE_SSL = {
-  'keyfile': '/ssl/client/key.pem',
-  'certfile': '/ssl/client/cert.pem',
-  'ca_certs': '/ssl/testca/cacert.pem',
-  'cert_reqs': ssl.CERT_REQUIRED
-}
+#BROKER_USE_SSL = {
+#  'keyfile': '/ssl/client/key.pem',
+#  'certfile': '/ssl/client/cert.pem',
+#  'ca_certs': '/ssl/testca/cacert.pem',
+#  'cert_reqs': ssl.CERT_REQUIRED
+#}
 
 
-CELERY_RESULT_BACKEND = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem' 
+#CELERY_RESULT_BACKEND = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem' 
+CELERY_RESULT_BACKEND = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/' 
 CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": MONGO_DB,
     "taskmeta_collection": MONGO_TOMBSTONE_COLLECTION
@@ -84,11 +85,13 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
 #******* Catalog ******************************************************
 CATALOG_EXCLUDE = ['admin','local','cybercom_auth','system.users','default_collection','{{cookiecutter.application_short_name }}']
 CATALOG_INCLUDE = ['catalog']
-CATALOG_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
+#CATALOG_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
+CATALOG_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/'
 CATALOG_ANONYMOUS=True
 #*********** Data Store ************************************************
 DATA_STORE_EXCLUDE = ['admin','local','cybercom_auth','system.users','catalog','default_collection','{{cookiecutter.application_short_name }}',]
-DATA_STORE_MONGO_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
+#DATA_STORE_MONGO_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/?ssl=true&ssl_ca_certs=/ssl/testca/cacert.pem&ssl_certfile=/ssl/client/mongodb.pem'
+DATA_STORE_MONGO_URI = 'mongodb://{{cookiecutter.broker_user}}:{{cookiecutter.broker_pass}}@cybercom_mongo:27017/'
 DATA_STORE_ANONYMOUS=True
 #*********** DOCKER_HOST_DATA_DIRECTORY ********************
 DOCKER_HOST_DATA_DIRECTORY = "{{cookiecutter.application_install_directory}}/{{cookiecutter.application_short_name }}"
